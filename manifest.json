@@ -1,0 +1,13 @@
+{
+  "id": "subwaybuilder-peak-utilization",
+  "name": "Peak Utilization",
+  "description": "Displays route capacity utilization and lets players adjust train schedules and cars per train.",
+  "version": "1.0.2",
+  "author": {
+    "name": "HaguBian"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "subway-builder": "<=1.7.2"
+  }
+}
