@@ -87,56 +87,6 @@ The build output is written to `dist/`. Use `pnpm dev:link` to link the built mo
 | `pnpm dev:unlink` | Remove the link created by `dev:link`. |
 | `pnpm dev` | Run the build watcher and launch the game. Logs are saved to `debug/latest.log`. |
 
-## Publishing a GitHub Release
-
-1. Commit and push the release changes to [HaguBian/subwaybuilder-peak-utilization](https://github.com/HaguBian/subwaybuilder-peak-utilization).
-2. Update the version in `manifest.json` and commit the change. Use the same version for the Git tag, release title, and ZIP filename.
-3. Run the checks and build the mod:
-
-   ```bash
-   pnpm typecheck
-   pnpm build
-   ```
-
-4. Package the built files into a ZIP containing `index.js` and `manifest.json` at the archive root. The Registry also requires a separate `manifest.json` release asset. For PowerShell:
-
-   ```powershell
-   New-Item -ItemType Directory -Force release | Out-Null
-
-   Compress-Archive `
-     -Path dist\index.js, dist\manifest.json `
-     -DestinationPath release\subwaybuilder-peak-utilization-v1.0.2.zip `
-     -Force
-
-   Copy-Item dist\manifest.json release\manifest.json -Force
-   ```
-
-   Replace `1.0.2` with the version being released.
-5. On GitHub, open **Releases > Draft a new release**. Create a tag such as `v1.0.2` from the commit containing the release changes.
-6. Set the release title to `Peak Utilization v1.0.2`, attach both the ZIP and standalone `manifest.json`, add release notes, and publish the release.
-
-## Submit to the Registry
-
-After publishing the GitHub Release:
-
-1. Sign in to GitHub as **HaguBian** and open the Registry's [Publish New Mod form](https://github.com/Subway-Builder-Modded/registry/issues/new?template=publish-mod.yml).
-2. Provide the requested listing details:
-
-   - **Mod ID:** `subwaybuilder-peak-utilization` — must match the ID in `manifest.json` and the Registry's requirements.
-   - **Display Name:** `Peak Utilization`
-   - **Description:** `Displays route capacity utilization and lets players adjust train schedules and cars per train.`
-   - **Tags:** `gameplay`, `qol`, `ui` — subject to the Registry's accepted tags.
-   - **Source URL:** `https://github.com/HaguBian/subwaybuilder-peak-utilization`
-   - **Update Type:** GitHub Releases.
-   - **GitHub Repository:** `HaguBian/subwaybuilder-peak-utilization`
-   - **Gallery Images:**
-     - Dashboard: `https://raw.githubusercontent.com/HaguBian/subwaybuilder-peak-utilization/main/doc/image/peak-utilization-dashboard.png`
-     - Route Info: `https://raw.githubusercontent.com/HaguBian/subwaybuilder-peak-utilization/main/doc/image/route-info.png`
-3. Confirm that you are the author or have permission to publish the mod and accept the platform Terms of Service. Fill in collaborator or caretaker information only when applicable.
-4. Submit the form and wait for Registry validation and maintainer review. Follow any instructions on the submission issue if validation fails.
-
-The Registry requires the mod ZIP and matching standalone `manifest.json` as separate assets in the GitHub Release. The manifest must include a valid `subway-builder` compatibility range, and its `id` must match the Registry Mod ID.
-
 ## Notes
 
 - Requires Subway Builder Modding API v1.0.0. Other API versions may not be compatible.
